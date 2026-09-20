@@ -173,21 +173,15 @@
   p:last-child { margin-bottom: 0; }
 
   .video {
-    aspect-ratio: 16 / 9;
-    display: grid;
-    place-items: center;
-    border: 1px dashed var(--border);
-    border-radius: 14px;
-    background: var(--surface);
-    color: var(--mute);
-    font-size: 14px;
-    box-shadow: var(--shadow);
-  }
-  .video iframe, .video video {
+    display: block;
     width: 100%;
-    height: 100%;
-    border: 0;
+    max-width: 520px;
+    margin: 0 auto;
+    aspect-ratio: 1 / 1;
     border-radius: 14px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    box-shadow: var(--shadow);
   }
 
   .suite { margin: 0 0 12px; }
@@ -263,10 +257,11 @@
 <section>
   <div class="wrap">
     <h2>Video</h2>
-    <!-- TODO: replace the placeholder box with the embed, either a self-hosted file
-         (<video controls poster="assets/video-poster.jpg"><source src="assets/overview.mp4"
-         type="video/mp4"></video>) or an <iframe> from the hosting platform. -->
-    <div class="video">Overview video coming soon</div>
+    <!-- Square, silent and 34s long, so it loops chromeless; autoplay only works
+         while the video is muted. -->
+    <video class="video" autoplay muted loop playsinline preload="metadata">
+      <source src="assets/video.mp4" type="video/mp4">
+    </video>
   </div>
 </section>
 
@@ -352,6 +347,16 @@
     <a href="https://www.internationalbrainlab.com/">International Brain Laboratory</a>.
   </div>
 </footer>
+
+<script>
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    for (const v of document.querySelectorAll("video[autoplay]")) {
+      v.removeAttribute("autoplay");
+      v.controls = true;
+      v.pause();
+    }
+  }
+</script>
 
 </body>
 </html>
