@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IBL BrainWideBench</title>
+<meta name="description" content="A benchmark for large-scale pretraining and across-animal transfer in multi-region neural recordings from the International Brain Laboratory.">
+<link rel="icon" href="../assets/logo-mark.png">
+<style>
+  :root { --ink:#1c1c1c; --mute:#63666b; --rule:#d9d6cf; --accent:#8a3324; --paper:#fdfcfa; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font: 17px/1.66 "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif; -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); }
+  img, video { max-width: 100%; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 26px; }
+  header { padding: 78px 0 0; text-align: center; border-bottom: 3px double var(--rule); padding-bottom: 34px; }
+  .kicker {
+    font: 600 11px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--mute); margin-bottom: 20px;
+  }
+  h1 {
+    margin: 0 0 16px; font-size: clamp(34px, 6vw, 52px); font-weight: 500;
+    letter-spacing: -.015em; line-height: 1.08;
+  }
+  .tagline { margin: 0 auto 26px; max-width: 580px; font-size: 18px; color: #3a3a3a; font-style: italic; }
+  .authors { margin: 0 auto; font-size: 15px; line-height: 1.8; }
+  .authors sup, .affils sup { color: var(--mute); }
+  .affils { margin: 12px auto 0; font-size: 12.5px; line-height: 1.7; color: var(--mute); }
+  .note { margin: 10px auto 0; font-size: 12.5px; color: var(--mute); }
+  .btns { display: flex; flex-wrap: wrap; gap: 0; justify-content: center; margin: 28px 0 0; }
+  .btn {
+    padding: 0 15px; border-right: 1px solid var(--rule); color: var(--ink);
+    text-decoration: none; font: 500 13.5px/1.1 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif; letter-spacing: .02em;
+  }
+  .btn:last-child { border-right: 0; }
+  .btn:hover { color: var(--accent); }
+  .btn.disabled { color: #a9a49b; pointer-events: none; }
+  section { padding: 44px 0 0; }
+  h2 {
+    margin: 0 0 18px; font: 600 11px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif; letter-spacing: .22em;
+    text-transform: uppercase; color: var(--mute); text-align: center;
+  }
+  .video { display: block; width: 100%; max-width: 520px; margin: 0 auto; }
+  p.abstract { margin: 0; text-align: justify; hyphens: auto; font-size: 16.5px; }
+  p.abstract::first-line { font-variant: small-caps; }
+  .suite { display: grid; grid-template-columns: 58px 1fr; gap: 16px; padding: 14px 0; border-top: 1px solid var(--rule); }
+  .suite:last-child { border-bottom: 1px solid var(--rule); }
+  .suite-key { font: 500 13px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif; letter-spacing: .1em; color: var(--mute); }
+  pre {
+    margin: 0; padding: 16px 18px; background: #f4f1ea; border-left: 3px solid var(--rule);
+    overflow-x: auto; font: 12.5px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color: #33312d;
+  }
+  footer {
+    margin-top: 54px; padding: 20px 0 52px; border-top: 3px double var(--rule);
+    text-align: center; font: 13px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif; color: var(--mute);
+  }
+  footer a { color: var(--mute); }
+  /* Temporary while the five candidates are being compared; delete with the pick. */
+  .switcher {
+    position: fixed; top: 12px; right: 12px; z-index: 50;
+    display: flex; align-items: center; gap: 6px;
+    padding: 6px 10px; border-radius: 999px;
+    background: rgba(255,255,255,.92); border: 1px solid #d8dee7;
+    box-shadow: 0 2px 10px rgba(15,23,42,.10);
+    font: 12px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  }
+  .switcher span { color: #7c8797; letter-spacing: .06em; text-transform: uppercase; font-size: 10px; }
+  .switcher a {
+    display: inline-grid; place-items: center; width: 20px; height: 20px;
+    border-radius: 50%; color: #33415c; text-decoration: none; font-weight: 600;
+  }
+  .switcher a:hover { background: #eef2f7; }
+  .switcher .switcher-all { width: auto; padding: 0 8px; border-radius: 999px; font-weight: 500; }
+</style>
+</head>
+<body>
+<nav class="switcher">
+  <span>Design</span>
+  <a href="../v1/">1</a><a href="../v2/">2</a><a href="../v3/">3</a>
+  <a href="../v4/">4</a><a href="../v5/">5</a>
+  <a class="switcher-all" href="../versions/">all</a>
+</nav>
+
+<header>
+  <div class="wrap">
+    <p class="kicker">International Brain Laboratory</p>
+    <h1>IBL BrainWideBench</h1>
+    <p class="tagline">A benchmark for large-scale pretraining and across-animal transfer in multi-region neural recordings from the <a href="https://www.internationalbrainlab.com/">International Brain Laboratory</a>.</p>
+    <p class="authors">Alexandre Andre<sup>1,*</sup>, Shivashriganesh P. Mahato<sup>1,*</sup>, Vinam Arora<sup>1</sup>, Keshav Balaji<sup>1</sup>, Divyansha Lachi<sup>1</sup>, Nanda H. Krishna<sup>2,3</sup>, Jingyun Xiao<sup>1</sup>, Yizi Zhang<sup>4</sup>, Ximeng Mao<sup>2,3</sup>, Wenrui Ma<sup>1</sup>, Han Yu<sup>5</sup>, International Brain Laboratory, Daniel Birman<sup>6</sup>, Niccolò Bonacchi<sup>7,8</sup>, Gaelle A. Chapuis<sup>9</sup>, Joana A. Catarino<sup>10</sup>, Felicia Davatolhagh<sup>11</sup>, Mayo Faulkner<sup>12</sup>, Laura Freitas-Silva<sup>13</sup>, Fei Hu<sup>14</sup>, Julia M. Huntenburg<sup>13</sup>, Anup Khanal<sup>11</sup>, Inês Laranjeira<sup>13</sup>, Petrina Lau<sup>15</sup>, Guido T. Meijer<sup>16</sup>, Nathaniel J. Miska<sup>12</sup>, Jean-Paul Noel<sup>17</sup>, Alejandro Pan-Vazquez<sup>18</sup>, Georg Raiser<sup>13</sup>, Cyrille Rossant<sup>12</sup>, Karolina Z. Socha<sup>11</sup>, Anne E. Urai<sup>19</sup>, Miles J. Wells<sup>12</sup>, Steven J. West<sup>12</sup>, Olivier Winter<sup>13</sup>, Blake Richards<sup>20,2</sup>, Guillaume Lajoie<sup>3,2</sup>, Cole Hurwitz<sup>21</sup>, Mehdi Azabou<sup>5</sup>, Matthew R. Whiteway<sup>5,†</sup>, Liam Paninski<sup>5,†</sup>, Eva L. Dyer<sup>1,†</sup></p>
+    <p class="affils"><sup>1</sup>&nbsp;University of Pennsylvania, <sup>2</sup>&nbsp;Mila, <sup>3</sup>&nbsp;Université de Montréal, <sup>4</sup>&nbsp;Stanford University, <sup>5</sup>&nbsp;Columbia University, <sup>6</sup>&nbsp;Allen Institute, <sup>7</sup>&nbsp;William James Center for Research, <sup>8</sup>&nbsp;ISPA - Instituto Universitário, <sup>9</sup>&nbsp;University of Geneva, <sup>10</sup>&nbsp;Karolinska Institutet, <sup>11</sup>&nbsp;UCLA, <sup>12</sup>&nbsp;University College London, <sup>13</sup>&nbsp;Champalimaud Foundation, <sup>14</sup>&nbsp;Lingang Laboratory, <sup>15</sup>&nbsp;The Chinese University of Hong Kong, <sup>16</sup>&nbsp;Donders Institute, <sup>17</sup>&nbsp;University of Minnesota, <sup>18</sup>&nbsp;Princeton University, <sup>19</sup>&nbsp;Leiden University, <sup>20</sup>&nbsp;McGill University, <sup>21</sup>&nbsp;IBM</p>
+    <p class="note"><sup>*</sup>&nbsp;Equal contribution. &nbsp; <sup>†</sup>&nbsp;Shared senior authorship.</p>
+    <div class="btns">
+        <a class="btn disabled" href="#" title="Paper link pending">Paper (soon)</a>
+        <a class="btn" href="https://bwb.iblcore.org">Leaderboard</a>
+        <a class="btn" href="https://brainbench-org.github.io/ibl-bwb/">Documentation</a>
+        <a class="btn" href="https://github.com/brainbench-org/ibl-bwb">GitHub</a>
+        <a class="btn" href="https://huggingface.co/nerdslab?search=ibl-bwb">Checkpoints</a>
+        <a class="btn" href="https://wandb.ai/ibl-bwb/projects">Training runs</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap"><video class="video" autoplay muted loop playsinline preload="metadata">
+      <source src="../assets/video.mp4" type="video/mp4">
+    </video></div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Abstract</h2>
+    <p class="abstract">Advances in large-scale neural recording have made it possible to collect data across many animals and distributed brain regions, raising the question of whether this scale can be exploited to learn general-purpose neural representations transferable across diverse downstream tasks. Yet, progress toward this goal has been limited by fragmented evaluation protocols and a narrow focus on individual task domains. Here, we present BrainWideBench, a benchmark for evaluating across-animal transfer on multi-region neural recordings, built on the International Brain Laboratory Brainwide Map dataset of neural and behavioral recordings spanning 276 brain regions from 139 mice performing a sensory-guided decision-making task. The benchmark is organized around three complementary task suites that evaluate whether learned representations support downstream decoding of behavior, can predict masked or future neural activity, and can recover biologically meaningful anatomical organization. With this benchmark, we systematically evaluate pretraining methods across transfer settings, including finetuning on downstream objectives and zero-shot generalization to unseen animals. Our results confirm pretraining improves performance over matched single-session baselines, but we show current methods exhibit heterogeneity in transfer capabilities: gains depend strongly on the alignment between pretraining objectives and downstream tasks. No single approach performs uniformly well across all three suites, and most methods are designed to only address a subset of them. Together, these findings suggest that learning representations that jointly generalize across behavior, dynamics, and anatomy remains an open challenge. By providing a unified and reproducible evaluation suite, BrainWideBench establishes a framework for measuring progress toward general-purpose models of the mouse brain.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Task suites</h2>
+      <div class="suite">
+        <div class="suite-key">TS1</div>
+        <div><b>Behavior.</b> Predict trial-level behavioral outcomes from neural population activity.</div>
+      </div>
+      <div class="suite">
+        <div class="suite-key">TS2</div>
+        <div><b>Dynamics.</b> Reconstruct firing rate trajectories and spike predictions across brain regions.</div>
+      </div>
+      <div class="suite">
+        <div class="suite-key">TS3</div>
+        <div><b>Anatomy.</b> Classify recorded neurons to their brain region from activity alone.</div>
+      </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Citation</h2>
+<pre>@inproceedings{ibl_brain_wide_bench_2026,
+  title     = {TODO paper title},
+  author    = {TODO author list, in the paper's order},
+  booktitle = {TODO proceedings title},
+  year      = {TODO},
+  url       = {TODO openreview or arXiv URL},
+}</pre>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="https://github.com/brainbench-org/ibl-bwb">brainbench-org/ibl-bwb</a> &middot;
+    <a href="https://brainbench-org.github.io/ibl-bwb/">Documentation</a> &middot;
+    Built on data from the
+    <a href="https://www.internationalbrainlab.com/">International Brain Laboratory</a>.
+  </div>
+</footer>
+
+<script>
+  // Reduced-motion viewers get a paused video with controls rather than a loop.
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    for (const v of document.querySelectorAll("video[autoplay]")) {
+      v.removeAttribute("autoplay"); v.controls = true; v.pause();
+    }
+  }
+</script>
+</body>
+</html>
