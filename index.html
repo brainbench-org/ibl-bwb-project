@@ -47,20 +47,18 @@
   }
   .video { display: block; width: 100%; border-radius: 3px; }
   p.abstract { margin: 0; font-size: 16.5px; }
-  .cite { position: relative; }
+  .cite-head { display: flex; align-items: center; justify-content: space-between; }
   pre {
     margin: 0; padding: 16px 18px; background: #0f172a; color: #e2e8f0;
     border-radius: 10px; white-space: pre-wrap; overflow-wrap: anywhere;
     font: 12.5px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   }
   .copy {
-    position: absolute; top: 10px; right: 10px;
-    padding: 5px 11px; border-radius: 7px;
-    border: 1px solid rgba(226,232,240,.25); background: rgba(226,232,240,.08);
-    color: #cbd5e1; cursor: pointer;
-    font: 550 12px/1.3 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+    margin-bottom: 16px; padding: 5px 12px; border-radius: 7px;
+    border: 1px solid #e5e7eb; background: #fff; color: #4b5563; cursor: pointer;
+    font: 550 12px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
   }
-  .copy:hover { background: rgba(226,232,240,.16); color: #f1f5f9; }
+  .copy:hover { border-color: var(--accent); color: var(--accent); }
   @media (max-width: 560px) { header { padding-top: 56px; } }
 </style>
 </head>
@@ -102,12 +100,13 @@
 </section>
 
 <section>
-  <div class="wrap">
-    <h2>Citation</h2>
+  <div class="wrap" id="cite">
+    <div class="cite-head">
+      <h2>Citation</h2>
+      <button class="copy" type="button">Copy</button>
+    </div>
     <!-- Keep in sync with CITATION.cff in the benchmark repository, which is what
          GitHub's "Cite this repository" button reads. -->
-<div class="cite">
-      <button class="copy" type="button">Copy</button>
 <pre>@misc{andre2026brainwidebenchbenchmarkinglargescalepretraining,
       title={BrainWideBench: Benchmarking large-scale pretraining and across-animal transfer in multi-region neural recordings}, 
       author={Alexandre Andre and Shivashriganesh P. Mahato and Vinam Arora and Keshav Balaji and Divyansha Lachi and Nanda H. Krishna and Jingyun Xiao and Yizi Zhang and Ximeng Mao and Wenrui Ma and Han Yu and International Brain Laboratory and Daniel Birman and Niccolò Bonacchi and Gaelle A. Chapuis and Joana A. Catarino and Felicia Davatolhagh and Mayo Faulkner and Laura Freitas-Silva and Fei Hu and Julia M. Huntenburg and Anup Khanal and Inês Laranjeira and Petrina Lau and Guido T. Meijer and Nathaniel J. Miska and Jean-Paul Noel and Alejandro Pan-Vazquez and Georg Raiser and Cyrille Rossant and Karolina Z. Socha and Anne E. Urai and Miles J. Wells and Steven J. West and Olivier Winter and Blake Richards and Guillaume Lajoie and Cole Hurwitz and Mehdi Azabou and Matthew R. Whiteway and Liam Paninski and Eva L. Dyer},
@@ -117,7 +116,6 @@
       primaryClass={cs.LG},
       url={https://arxiv.org/abs/2609.22064}, 
 }</pre>
-    </div>
   </div>
 </section>
 
@@ -126,11 +124,11 @@
   document.querySelector(".copy")?.addEventListener("click", async (e) => {
     const btn = e.currentTarget;
     try {
-      await navigator.clipboard.writeText(btn.parentElement.querySelector("pre").textContent);
+      await navigator.clipboard.writeText(document.querySelector("#cite pre").textContent);
       btn.textContent = "Copied";
     } catch {
       const r = document.createRange();
-      r.selectNodeContents(btn.parentElement.querySelector("pre"));
+      r.selectNodeContents(document.querySelector("#cite pre"));
       getSelection().removeAllRanges(); getSelection().addRange(r);
       btn.textContent = "Select all";
     }
