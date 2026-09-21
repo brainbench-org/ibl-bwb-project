@@ -39,7 +39,6 @@
     border-bottom: 1.5px solid var(--ink); padding-bottom: 2px;
   }
   .btn:hover { color: var(--accent); border-color: var(--accent); }
-  .btn.disabled { color: #a7aeb8; border-color: #d7dbe1; pointer-events: none; }
   section { padding: 54px 0 0; }
   h2 {
     margin: 0 0 16px; font-size: 11.5px; font-weight: 700; letter-spacing: .14em;
@@ -66,15 +65,13 @@
     <img src="assets/logo-mark.png" alt="">
     <h1>IBL BrainWideBench</h1>
     <p class="tagline">A benchmark for large-scale pretraining and across-animal transfer in multi-region neural recordings from the <a href="https://www.internationalbrainlab.com/">International Brain Laboratory</a>.</p>
-    <!-- TODO: uncomment the venue line once the paper is public.
-    <p class="venue">Venue, year</p>
-    -->
+    <!-- TODO: replace with the venue once the paper is accepted somewhere. -->
+    <p class="venue">Preprint, <a href="https://arxiv.org/abs/2609.22064">arXiv:2609.22064</a>, 2026</p>
     <p class="authors">Alexandre Andre<sup>1,*</sup>, Shivashriganesh P. Mahato<sup>1,*</sup>, Vinam Arora<sup>1</sup>, Keshav Balaji<sup>1</sup>, Divyansha Lachi<sup>1</sup>, Nanda H. Krishna<sup>2,3</sup>, Jingyun Xiao<sup>1</sup>, Yizi Zhang<sup>4</sup>, Ximeng Mao<sup>2,3</sup>, Wenrui Ma<sup>1</sup>, Han Yu<sup>5</sup>, International Brain Laboratory, Daniel Birman<sup>6</sup>, Niccolò Bonacchi<sup>7,8</sup>, Gaelle A. Chapuis<sup>9</sup>, Joana A. Catarino<sup>10</sup>, Felicia Davatolhagh<sup>11</sup>, Mayo Faulkner<sup>12</sup>, Laura Freitas-Silva<sup>13</sup>, Fei Hu<sup>14</sup>, Julia M. Huntenburg<sup>13</sup>, Anup Khanal<sup>11</sup>, Inês Laranjeira<sup>13</sup>, Petrina Lau<sup>15</sup>, Guido T. Meijer<sup>16</sup>, Nathaniel J. Miska<sup>12</sup>, Jean-Paul Noel<sup>17</sup>, Alejandro Pan-Vazquez<sup>18</sup>, Georg Raiser<sup>13</sup>, Cyrille Rossant<sup>12</sup>, Karolina Z. Socha<sup>11</sup>, Anne E. Urai<sup>19</sup>, Miles J. Wells<sup>12</sup>, Steven J. West<sup>12</sup>, Olivier Winter<sup>13</sup>, Blake Richards<sup>20,2</sup>, Guillaume Lajoie<sup>3,2</sup>, Cole Hurwitz<sup>21</sup>, Mehdi Azabou<sup>5</sup>, Matthew R. Whiteway<sup>5,†</sup>, Liam Paninski<sup>5,†</sup>, Eva L. Dyer<sup>1,†</sup></p>
     <p class="affils"><sup>1</sup>&nbsp;University of Pennsylvania, <sup>2</sup>&nbsp;Mila, <sup>3</sup>&nbsp;Université de Montréal, <sup>4</sup>&nbsp;Stanford University, <sup>5</sup>&nbsp;Columbia University, <sup>6</sup>&nbsp;Allen Institute, <sup>7</sup>&nbsp;William James Center for Research, <sup>8</sup>&nbsp;ISPA - Instituto Universitário, <sup>9</sup>&nbsp;University of Geneva, <sup>10</sup>&nbsp;Karolinska Institutet, <sup>11</sup>&nbsp;UCLA, <sup>12</sup>&nbsp;University College London, <sup>13</sup>&nbsp;Champalimaud Foundation, <sup>14</sup>&nbsp;Lingang Laboratory, <sup>15</sup>&nbsp;The Chinese University of Hong Kong, <sup>16</sup>&nbsp;Donders Institute, <sup>17</sup>&nbsp;University of Minnesota, <sup>18</sup>&nbsp;Princeton University, <sup>19</sup>&nbsp;Leiden University, <sup>20</sup>&nbsp;McGill University, <sup>21</sup>&nbsp;IBM</p>
     <p class="note"><sup>*</sup>&nbsp;Equal contribution. &nbsp; <sup>†</sup>&nbsp;Shared senior authorship.</p>
-    <!-- TODO: swap the href in and drop "disabled" once the paper is public. -->
     <div class="btns">
-        <a class="btn disabled" href="#" title="Paper link pending">Paper (soon)</a>
+        <a class="btn" href="https://arxiv.org/abs/2609.22064">Paper</a>
         <a class="btn" href="https://bwb.iblcore.org">Leaderboard</a>
         <a class="btn" href="https://brainbench-org.github.io/ibl-bwb/">Documentation</a>
         <a class="btn" href="https://github.com/brainbench-org/ibl-bwb">GitHub</a>
@@ -102,20 +99,16 @@
 <section>
   <div class="wrap">
     <h2>Citation</h2>
-    <!-- TODO: both entries are placeholders until the paper is public. They mirror
-         CITATION.cff in the benchmark repository; update the two together. -->
-<pre>@inproceedings{ibl_brain_wide_bench_2026,
-  title     = {TODO paper title},
-  author    = {TODO author list, in the paper's order},
-  booktitle = {TODO proceedings title},
-  year      = {TODO},
-  url       = {TODO openreview or arXiv URL},
-}
-
-@misc{ibl_brain_wide_map,
-  title  = {TODO IBL Brain Wide Map dataset citation},
-  author = {{International Brain Laboratory}},
-  year   = {TODO},
+    <!-- Keep in sync with CITATION.cff in the benchmark repository, which is what
+         GitHub's "Cite this repository" button reads. -->
+<pre>@misc{andre2026brainwidebenchbenchmarkinglargescalepretraining,
+      title={BrainWideBench: Benchmarking large-scale pretraining and across-animal transfer in multi-region neural recordings}, 
+      author={Alexandre Andre and Shivashriganesh P. Mahato and Vinam Arora and Keshav Balaji and Divyansha Lachi and Nanda H. Krishna and Jingyun Xiao and Yizi Zhang and Ximeng Mao and Wenrui Ma and Han Yu and International Brain Laboratory and Daniel Birman and Niccolò Bonacchi and Gaelle A. Chapuis and Joana A. Catarino and Felicia Davatolhagh and Mayo Faulkner and Laura Freitas-Silva and Fei Hu and Julia M. Huntenburg and Anup Khanal and Inês Laranjeira and Petrina Lau and Guido T. Meijer and Nathaniel J. Miska and Jean-Paul Noel and Alejandro Pan-Vazquez and Georg Raiser and Cyrille Rossant and Karolina Z. Socha and Anne E. Urai and Miles J. Wells and Steven J. West and Olivier Winter and Blake Richards and Guillaume Lajoie and Cole Hurwitz and Mehdi Azabou and Matthew R. Whiteway and Liam Paninski and Eva L. Dyer},
+      year={2026},
+      eprint={2609.22064},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2609.22064}, 
 }</pre>
   </div>
 </section>
