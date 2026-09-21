@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IBL BrainWideBench</title>
+<meta name="description" content="A benchmark for large-scale pretraining and across-animal transfer in multi-region neural recordings from the International Brain Laboratory.">
+<link rel="icon" href="../assets/logo-mark.png">
+
+<meta property="og:title" content="IBL BrainWideBench">
+<meta property="og:description" content="Benchmarking neural decoding on brain-wide recordings from the International Brain Laboratory.">
+<meta property="og:type" content="website">
+<!-- TODO: add ../assets/social-card.png (1200x630) and set an absolute og:image URL. -->
+<style>
+  :root { --ink:#111418; --mute:#6b7280; --accent:#004d89; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: #fff; color: var(--ink);
+    font: 16px/1.68 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); }
+  img, video { max-width: 100%; }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 0 24px; }
+  header { padding: 92px 0 0; }
+  header img { width: 54px; margin-bottom: 26px; }
+  h1 {
+    margin: 0 0 10px; font-size: clamp(30px, 5vw, 40px); font-weight: 680;
+    letter-spacing: -.028em; line-height: 1.1;
+  }
+  .tagline { margin: 0 0 30px; color: var(--mute); font-size: 17px; max-width: 540px; }
+  .venue { margin: 0 0 16px; font-size: 13.5px; color: var(--mute); }
+  .authors { margin: 0; font-size: 14.5px; line-height: 1.8; }
+  .authors sup, .affils sup { color: var(--mute); }
+  .affils { margin: 12px 0 0; font-size: 12.5px; line-height: 1.75; color: var(--mute); }
+  .note { margin: 10px 0 0; font-size: 12.5px; color: var(--mute); }
+  .btns { display: flex; flex-wrap: wrap; gap: 18px; margin: 30px 0 0; }
+  .btn {
+    color: var(--ink); text-decoration: none; font-size: 14.5px; font-weight: 550;
+    border-bottom: 1.5px solid var(--ink); padding-bottom: 2px;
+  }
+  .btn:hover { color: var(--accent); border-color: var(--accent); }
+  section { padding: 54px 0 0; }
+  section:last-of-type { padding-bottom: 64px; }
+  h2 {
+    margin: 0 0 16px; font-size: 11.5px; font-weight: 700; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--mute);
+  }
+  .video { display: block; width: 100%; border-radius: 3px; }
+  p.abstract {
+    margin: 0; font-size: 16.5px;
+    /* Hyphenation keeps justification from opening rivers between the words. */
+    text-align: justify; -webkit-hyphens: auto; hyphens: auto;
+  }
+  .cite-head { display: flex; align-items: center; justify-content: space-between; }
+  pre {
+    margin: 0; padding: 18px 20px; background: #0f172a; color: #e2e8f0;
+    border-radius: 10px; white-space: pre-wrap; overflow-wrap: break-word;
+    font: 12px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  /* Hanging indent, so a wrapped field reads as one field and not as a paragraph. */
+  pre .l { display: block; padding-left: 8ch; text-indent: -8ch; }
+  .copy {
+    margin-bottom: 16px; padding: 5px 12px; border-radius: 7px;
+    border: 1px solid #e5e7eb; background: #fff; color: #4b5563; cursor: pointer;
+    font: 550 12px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+  }
+  .copy:hover { border-color: var(--accent); color: var(--accent); }
+  @media (max-width: 560px) { header { padding-top: 56px; } }
+  /* Temporary while the two orders are being compared; delete with the pick. */
+  .ab {
+    position: fixed; top: 12px; right: 12px; z-index: 50;
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 12px; border-radius: 999px;
+    background: rgba(255,255,255,.94); border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 10px rgba(15,23,42,.08);
+    font: 12px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  }
+  .ab a { color: #6b7280; text-decoration: none; font-weight: 600; }
+  .ab a.on { color: #004d89; }
+</style>
+</head>
+<body>
+
+<nav class="ab"><span style="color:#9aa3af">order</span><a class="" href="../a/">video first</a><a class="on" href="../b/">abstract first</a></nav>
+
+<header>
+  <div class="wrap">
+    <img src="../assets/logo-mark.png" alt="">
+    <h1>IBL BrainWideBench</h1>
+    <p class="tagline">A benchmark for large-scale pretraining and across-animal transfer in multi-region neural recordings from the <a href="https://www.internationalbrainlab.com/">International Brain Laboratory</a>.</p>
+    <!-- TODO: replace with the venue once the paper is accepted somewhere. -->
+    <p class="venue">Preprint, <a href="https://arxiv.org/abs/2609.22064">arXiv:2609.22064</a>, 2026</p>
+    <p class="authors">Alexandre Andre<sup>1,*</sup>, Shivashriganesh P. Mahato<sup>1,*</sup>, Vinam Arora<sup>1</sup>, Keshav Balaji<sup>1</sup>, Divyansha Lachi<sup>1</sup>, Nanda H. Krishna<sup>2,3</sup>, Jingyun Xiao<sup>1</sup>, Yizi Zhang<sup>4</sup>, Ximeng Mao<sup>2,3</sup>, Wenrui Ma<sup>1</sup>, Han Yu<sup>5</sup>, International Brain Laboratory, Daniel Birman<sup>6</sup>, Niccolò Bonacchi<sup>7,8</sup>, Gaelle A. Chapuis<sup>9</sup>, Joana A. Catarino<sup>10</sup>, Felicia Davatolhagh<sup>11</sup>, Mayo Faulkner<sup>12</sup>, Laura Freitas-Silva<sup>13</sup>, Fei Hu<sup>14</sup>, Julia M. Huntenburg<sup>13</sup>, Anup Khanal<sup>11</sup>, Inês Laranjeira<sup>13</sup>, Petrina Lau<sup>15</sup>, Guido T. Meijer<sup>16</sup>, Nathaniel J. Miska<sup>12</sup>, Jean-Paul Noel<sup>17</sup>, Alejandro Pan-Vazquez<sup>18</sup>, Georg Raiser<sup>13</sup>, Cyrille Rossant<sup>12</sup>, Karolina Z. Socha<sup>11</sup>, Anne E. Urai<sup>19</sup>, Miles J. Wells<sup>12</sup>, Steven J. West<sup>12</sup>, Olivier Winter<sup>13</sup>, Blake Richards<sup>20,2</sup>, Guillaume Lajoie<sup>3,2</sup>, Cole Hurwitz<sup>21</sup>, Mehdi Azabou<sup>5</sup>, Matthew R. Whiteway<sup>5,†</sup>, Liam Paninski<sup>5,†</sup>, Eva L. Dyer<sup>1,†</sup></p>
+    <p class="affils"><sup>1</sup>&nbsp;University of Pennsylvania, <sup>2</sup>&nbsp;Mila, <sup>3</sup>&nbsp;Université de Montréal, <sup>4</sup>&nbsp;Stanford University, <sup>5</sup>&nbsp;Columbia University, <sup>6</sup>&nbsp;Allen Institute, <sup>7</sup>&nbsp;William James Center for Research, <sup>8</sup>&nbsp;ISPA - Instituto Universitário, <sup>9</sup>&nbsp;University of Geneva, <sup>10</sup>&nbsp;Karolinska Institutet, <sup>11</sup>&nbsp;UCLA, <sup>12</sup>&nbsp;University College London, <sup>13</sup>&nbsp;Champalimaud Foundation, <sup>14</sup>&nbsp;Lingang Laboratory, <sup>15</sup>&nbsp;The Chinese University of Hong Kong, <sup>16</sup>&nbsp;Donders Institute, <sup>17</sup>&nbsp;University of Minnesota, <sup>18</sup>&nbsp;Princeton University, <sup>19</sup>&nbsp;Leiden University, <sup>20</sup>&nbsp;McGill University, <sup>21</sup>&nbsp;IBM</p>
+    <p class="note"><sup>*</sup>&nbsp;Equal contribution. &nbsp; <sup>†</sup>&nbsp;Shared senior authorship.</p>
+    <div class="btns">
+        <a class="btn" href="https://arxiv.org/abs/2609.22064">Paper</a>
+        <a class="btn" href="https://bwb.iblcore.org">Leaderboard</a>
+        <a class="btn" href="https://brainbench-org.github.io/ibl-bwb/">Documentation</a>
+        <a class="btn" href="https://github.com/brainbench-org/ibl-bwb">GitHub</a>
+        <a class="btn" href="https://huggingface.co/collections/nerdslab/ibl-bwb">Checkpoints</a>
+        <a class="btn" href="https://wandb.ai/ibl-bwb/projects">Training runs</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>Abstract</h2>
+    <!-- TODO: the paper abstract, minus its closing code-availability line (the GitHub
+         link covers that); condense it once the paper is public. -->
+    <p class="abstract">Advances in large-scale neural recording have made it possible to collect data across many animals and distributed brain regions, raising the question of whether this scale can be exploited to learn general-purpose neural representations transferable across diverse downstream tasks. Yet, progress toward this goal has been limited by fragmented evaluation protocols and a narrow focus on individual task domains. Here, we present BrainWideBench, a benchmark for evaluating across-animal transfer on multi-region neural recordings, built on the International Brain Laboratory Brainwide Map dataset of neural and behavioral recordings spanning 276 brain regions from 139 mice performing a sensory-guided decision-making task. The benchmark is organized around three complementary task suites that evaluate whether learned representations support downstream decoding of behavior, can predict masked or future neural activity, and can recover biologically meaningful anatomical organization. With this benchmark, we systematically evaluate pretraining methods across transfer settings, including finetuning on downstream objectives and zero-shot generalization to unseen animals. Our results confirm pretraining improves performance over matched single-session baselines, but we show current methods exhibit heterogeneity in transfer capabilities: gains depend strongly on the alignment between pretraining objectives and downstream tasks. No single approach performs uniformly well across all three suites, and most methods are designed to only address a subset of them. Together, these findings suggest that learning representations that jointly generalize across behavior, dynamics, and anatomy remains an open challenge. By providing a unified and reproducible evaluation suite, BrainWideBench establishes a framework for measuring progress toward general-purpose models of the mouse brain.</p>
+  </div>
+</section>
+<section>
+  <div class="wrap"><video class="video" autoplay muted loop playsinline preload="metadata">
+      <source src="../assets/video.mp4" type="video/mp4">
+    </video></div>
+</section>
+<section>
+  <div class="wrap" id="cite">
+    <div class="cite-head">
+      <h2>Citation</h2>
+      <button class="copy" type="button">Copy</button>
+    </div>
+    <!-- Keep in sync with CITATION.cff in the benchmark repository, which is what
+         GitHub's "Cite this repository" button reads. -->
+<pre><span class="l">@misc{andre2026brainwidebenchbenchmarkinglargescalepretraining,</span><span class="l">      title={BrainWideBench: Benchmarking large-scale pretraining and across-animal transfer in multi-region neural recordings}, </span><span class="l">      author={Alexandre Andre and Shivashriganesh P. Mahato and Vinam Arora and Keshav Balaji and Divyansha Lachi and Nanda H. Krishna and Jingyun Xiao and Yizi Zhang and Ximeng Mao and Wenrui Ma and Han Yu and International Brain Laboratory and Daniel Birman and Niccolò Bonacchi and Gaelle A. Chapuis and Joana A. Catarino and Felicia Davatolhagh and Mayo Faulkner and Laura Freitas-Silva and Fei Hu and Julia M. Huntenburg and Anup Khanal and Inês Laranjeira and Petrina Lau and Guido T. Meijer and Nathaniel J. Miska and Jean-Paul Noel and Alejandro Pan-Vazquez and Georg Raiser and Cyrille Rossant and Karolina Z. Socha and Anne E. Urai and Miles J. Wells and Steven J. West and Olivier Winter and Blake Richards and Guillaume Lajoie and Cole Hurwitz and Mehdi Azabou and Matthew R. Whiteway and Liam Paninski and Eva L. Dyer},</span><span class="l">      year={2026},</span><span class="l">      eprint={2609.22064},</span><span class="l">      archivePrefix={arXiv},</span><span class="l">      primaryClass={cs.LG},</span><span class="l">      url={https://arxiv.org/abs/2609.22064}, </span><span class="l">}</span></pre>
+  </div>
+</section>
+
+<script>
+  // The entry is one long line, so hand people a button rather than a drag-select.
+  document.querySelector(".copy")?.addEventListener("click", async (e) => {
+    const btn = e.currentTarget;
+    try {
+      await navigator.clipboard.writeText([...document.querySelectorAll("#cite .l")].map(l => l.textContent).join("\n"));
+      btn.textContent = "Copied";
+    } catch {
+      const r = document.createRange();
+      r.selectNodeContents(document.querySelector("#cite pre"));
+      getSelection().removeAllRanges(); getSelection().addRange(r);
+      btn.textContent = "Select all";
+    }
+    setTimeout(() => { btn.textContent = "Copy"; }, 2000);
+  });
+
+  // Reduced-motion viewers get a paused video with controls rather than a loop.
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    for (const v of document.querySelectorAll("video[autoplay]")) {
+      v.removeAttribute("autoplay"); v.controls = true; v.pause();
+    }
+  }
+</script>
+</body>
+</html>
