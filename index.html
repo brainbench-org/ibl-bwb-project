@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <!-- TODO: add assets/social-card.png (1200x630) and set an absolute og:image URL. -->
 <style>
-  :root { --ink:#111418; --mute:#6b7280; --rule:#e5e7eb; --accent:#004d89; }
+  :root { --ink:#111418; --mute:#6b7280; --accent:#004d89; }
   * { box-sizing: border-box; }
   body {
     margin: 0; background: #fff; color: var(--ink);
@@ -40,6 +40,7 @@
   }
   .btn:hover { color: var(--accent); border-color: var(--accent); }
   section { padding: 54px 0 0; }
+  section:last-of-type { padding-bottom: 64px; }
   h2 {
     margin: 0 0 16px; font-size: 11.5px; font-weight: 700; letter-spacing: .14em;
     text-transform: uppercase; color: var(--mute);
@@ -51,11 +52,6 @@
     border-radius: 10px; overflow-x: auto;
     font: 12.5px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   }
-  footer {
-    margin-top: 60px; padding: 20px 0 56px; border-top: 1px solid var(--rule);
-    font-size: 13px; color: var(--mute);
-  }
-  footer a { color: var(--mute); }
   @media (max-width: 560px) { header { padding-top: 56px; } }
 </style>
 </head>
@@ -112,15 +108,6 @@
 }</pre>
   </div>
 </section>
-
-<footer>
-  <div class="wrap">
-    <a href="https://github.com/brainbench-org/ibl-bwb">brainbench-org/ibl-bwb</a> &middot;
-    <a href="https://brainbench-org.github.io/ibl-bwb/">Documentation</a> &middot;
-    Built on data from the
-    <a href="https://www.internationalbrainlab.com/">International Brain Laboratory</a>.
-  </div>
-</footer>
 
 <script>
   // Reduced-motion viewers get a paused video with controls rather than a loop.
