@@ -49,10 +49,12 @@
   p.abstract { margin: 0; font-size: 16.5px; }
   .cite-head { display: flex; align-items: center; justify-content: space-between; }
   pre {
-    margin: 0; padding: 16px 18px; background: #0f172a; color: #e2e8f0;
-    border-radius: 10px; white-space: pre-wrap; overflow-wrap: anywhere;
-    font: 12.5px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    margin: 0; padding: 18px 20px; background: #0f172a; color: #e2e8f0;
+    border-radius: 10px; white-space: pre-wrap; overflow-wrap: break-word;
+    font: 12px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   }
+  /* Hanging indent, so a wrapped field reads as one field and not as a paragraph. */
+  pre .l { display: block; padding-left: 8ch; text-indent: -8ch; }
   .copy {
     margin-bottom: 16px; padding: 5px 12px; border-radius: 7px;
     border: 1px solid #e5e7eb; background: #fff; color: #4b5563; cursor: pointer;
@@ -107,15 +109,7 @@
     </div>
     <!-- Keep in sync with CITATION.cff in the benchmark repository, which is what
          GitHub's "Cite this repository" button reads. -->
-<pre>@misc{andre2026brainwidebenchbenchmarkinglargescalepretraining,
-      title={BrainWideBench: Benchmarking large-scale pretraining and across-animal transfer in multi-region neural recordings}, 
-      author={Alexandre Andre and Shivashriganesh P. Mahato and Vinam Arora and Keshav Balaji and Divyansha Lachi and Nanda H. Krishna and Jingyun Xiao and Yizi Zhang and Ximeng Mao and Wenrui Ma and Han Yu and International Brain Laboratory and Daniel Birman and Niccolò Bonacchi and Gaelle A. Chapuis and Joana A. Catarino and Felicia Davatolhagh and Mayo Faulkner and Laura Freitas-Silva and Fei Hu and Julia M. Huntenburg and Anup Khanal and Inês Laranjeira and Petrina Lau and Guido T. Meijer and Nathaniel J. Miska and Jean-Paul Noel and Alejandro Pan-Vazquez and Georg Raiser and Cyrille Rossant and Karolina Z. Socha and Anne E. Urai and Miles J. Wells and Steven J. West and Olivier Winter and Blake Richards and Guillaume Lajoie and Cole Hurwitz and Mehdi Azabou and Matthew R. Whiteway and Liam Paninski and Eva L. Dyer},
-      year={2026},
-      eprint={2609.22064},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG},
-      url={https://arxiv.org/abs/2609.22064}, 
-}</pre>
+<pre><span class="l">@misc{andre2026brainwidebenchbenchmarkinglargescalepretraining,</span><span class="l">      title={BrainWideBench: Benchmarking large-scale pretraining and across-animal transfer in multi-region neural recordings}, </span><span class="l">      author={Alexandre Andre and Shivashriganesh P. Mahato and Vinam Arora and Keshav Balaji and Divyansha Lachi and Nanda H. Krishna and Jingyun Xiao and Yizi Zhang and Ximeng Mao and Wenrui Ma and Han Yu and International Brain Laboratory and Daniel Birman and Niccolò Bonacchi and Gaelle A. Chapuis and Joana A. Catarino and Felicia Davatolhagh and Mayo Faulkner and Laura Freitas-Silva and Fei Hu and Julia M. Huntenburg and Anup Khanal and Inês Laranjeira and Petrina Lau and Guido T. Meijer and Nathaniel J. Miska and Jean-Paul Noel and Alejandro Pan-Vazquez and Georg Raiser and Cyrille Rossant and Karolina Z. Socha and Anne E. Urai and Miles J. Wells and Steven J. West and Olivier Winter and Blake Richards and Guillaume Lajoie and Cole Hurwitz and Mehdi Azabou and Matthew R. Whiteway and Liam Paninski and Eva L. Dyer},</span><span class="l">      year={2026},</span><span class="l">      eprint={2609.22064},</span><span class="l">      archivePrefix={arXiv},</span><span class="l">      primaryClass={cs.LG},</span><span class="l">      url={https://arxiv.org/abs/2609.22064}, </span><span class="l">}</span></pre>
   </div>
 </section>
 
@@ -124,7 +118,7 @@
   document.querySelector(".copy")?.addEventListener("click", async (e) => {
     const btn = e.currentTarget;
     try {
-      await navigator.clipboard.writeText(document.querySelector("#cite pre").textContent);
+      await navigator.clipboard.writeText([...document.querySelectorAll("#cite .l")].map(l => l.textContent).join("\n"));
       btn.textContent = "Copied";
     } catch {
       const r = document.createRange();
